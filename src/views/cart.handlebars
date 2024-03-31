@@ -1,0 +1,157 @@
+<main>
+  <div>
+    <h1>Contenido del carrito:</h1>
+
+    <table id="product_table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Imagen</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each cart.products}}
+          <tr id="product_{{this._id}}">
+            <td>{{this.product.title}}</td>
+            <td>{{this.product.description}}</td>
+            <td>$ {{this.product.price}}</td>
+            <td class="product_quantity" contenteditable="true">{{this.quantity}}</td>
+            <td><img src="{{this.product.thumbnail}}" alt="{{this.product.title}}"></td>
+            <td>
+              <button onclick="mostrarFormulario('{{this._id}}', '{{this.quantity}}')">Editar</button>
+            </td>
+            <td>
+              <button onclick="borrarProducto('{{this._id}}')">Eliminar</button>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"></td>
+          <td>Subtotal:</td>
+          <td id="subtotal" colspan="1">$0.00</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="product_table">
+      <button id="vaciar_carrito_btn">Vaciar Carrito</button>
+    </div>
+  </div>
+</main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Calcular el subtotal al cargar la página
+    calcularSubtotal();
+
+    //  botón para vaciar el carrito
+    document.getElementById('vaciar_carrito_btn').addEventListener('click', vaciarCarrito);
+
+    // detectar cambios en la cantidad y recalcular el subtotal
+    const quantityInputs = document.querySelectorAll('.product_quantity');
+    
+    quantityInputs.forEach(input => {
+      input.addEventListener('input', calcularSubtotal);
+    });
+  });
+
+  function mostrarFormulario(productId, cantidadActual) {
+    const nuevaCantidad = prompt("Ingrese la nueva cantidad:", cantidadActual);
+    if (nuevaCantidad !== null) {
+      fetch(`/api/carts/${productId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ quantity: nuevaCantidad })
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Error al actualizar la cantidad del producto en el carrito');
+      })
+      .then(data => {
+        console.log('Cantidad actualizada:', data);
+
+        // Actualizar cantidad en la interfaz
+        const productElement = document.querySelector(`#product_${productId}`);
+        productElement.querySelector('.product_quantity').textContent = nuevaCantidad;
+
+        // Recalcular el subtotal después de la actualización
+        calcularSubtotal();
+      })
+      .catch(error => { 
+        console.error('Error:', error);
+      });
+    }
+  }
+
+  function calcularSubtotal() {
+    let subtotal = 0;
+    const rows = document.querySelectorAll('#product_table tbody tr');
+    rows.forEach(row => {
+      const price = parseFloat(row.querySelector('td:nth-child(3)').textContent.replace('$', ''));
+      const quantity = parseInt(row.querySelector('.product_quantity').textContent);
+      subtotal += price * quantity;
+    });
+    // Actualizar el subtotal 
+    document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+  }
+
+async function borrarProducto(productId) {
+  console.log('Eliminando producto con ID:', productId); // Agregado para depurar
+  try {
+    const response = await fetch(`/api/carts/errase/${productId}`, {
+      method: 'DELETE'
+    });
+    if (response.status === 200) {
+      // Eliminar la fila correspondiente de la tabla del carrito
+      const productRow = document.getElementById(`product_${productId}`);
+      if (productRow) {
+        productRow.remove(); // Eliminar la fila de la tabla
+        console.log('Fila del proyecto eliminada de la tabla');
+      } else {
+        console.error('No se encontró la fila del producto en la tabla'); // Mensaje de error en caso de que no se encuentre la fila
+      }
+    } else {
+      // Manejar el caso de error
+      console.error('Error al eliminar el producto del carrito');
+    }
+  } catch (error) {
+    console.error('Error al eliminar el producto del carrito:', error);
+  }
+}
+
+async function vaciarCarrito() {
+    try {
+        const response = await fetch(`/api/carts/vaciar`, {
+            method: "DELETE",
+        });
+        if (response.ok) {
+            const subtotalElement = document.getElementById("subtotal");
+            if (subtotalElement) {
+                subtotalElement.textContent = "$0.00";
+            } else {
+                console.warn("El elemento #subtotal no está presente en la página.");
+            }
+            const productList = document.getElementById("product_table");
+            if (productList) {
+                productList.innerHTML = "";
+            } else {
+                console.warn("El elemento #product_table no está presente en la página.");
+            }
+            console.log("Carrito vaciado correctamente");
+        } else {
+            console.error("Error al vaciar el carrito");
+        }
+    } catch (error) {
+        console.error("Error al vaciar el carrito:", error);
+    }
+}
+
+</script>
