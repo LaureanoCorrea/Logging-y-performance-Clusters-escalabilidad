@@ -1,0 +1,16 @@
+<div class="ticket-container">
+  <main class="ticket">
+    <h1 class="ticket-title">Ticket de Compra</h1>
+    <div class="ticket-details">
+      <p><strong>ID de Orden:</strong> {{order._id}}</p>
+      <p><strong>Fecha de Compra:</strong> {{this.order.createdAt}}</p>
+      <p><strong>Productos:</strong></p>
+      <ul class="ticket-products">
+        {{#each order.products}}
+          <li>{{this.title}} - Cantidad: {{this.quantity}}</li>
+        {{/each}}
+      </ul>
+      <p><strong>Total:</strong> ${{this.order.total}}</p>
+    </div>
+  </main>
+</div>

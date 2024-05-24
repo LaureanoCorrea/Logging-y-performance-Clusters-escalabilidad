@@ -1,0 +1,523 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h3 {
+  text-align: center;
+  color: #333;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+#subtotal {
+  text-align: center;
+  font-weight: 800;
+}
+
+/* Header Styles */
+header {
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.button-container {
+  display: flex;
+  gap: 5px;
+}
+
+.button {
+  text-decoration: none;
+  padding: 10px 15px;
+  color: white;
+  background-color: #007bff;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.cart-icon, .button .cart-icon {
+  font-size: 24px;
+  color: white;
+}
+
+.chat-button {
+  font-size: 14px;
+  padding: 8px 12px;
+  background-color: #28a745;
+}
+
+.chat-button:hover {
+  background-color: #218838;
+}
+
+/* Buttons Table Styles */
+.buttons-table {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.buttons-table button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.buttons-table button:hover {
+  background-color: #0056b3;
+}
+
+#vaciar_carrito_btn {
+  background-color: #dc3545;
+}
+
+#vaciar_carrito_btn:hover {
+  background-color: #c82333;
+}
+
+#comprar_btn {
+  background-color: #28a745;
+}
+
+#comprar_btn:hover {
+  background-color: #218838;
+}
+
+/* Product List Styles */
+#product_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  padding-top: 30px;
+  margin: 0 auto;
+  color: #2c3e50;
+}
+
+#uploader {
+  width: calc(100% - 40px);
+  padding: 20px;
+  margin: 20px auto;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* List Item Styles */
+li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+/* Delete Button Styles */
+.delete_button {
+  border-radius: 5px;
+  border: 2px solid #e74c3c;
+  background-color: #ffffff;
+  color: #e74c3c;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete_button:hover {
+  background-color: #e74c3c;
+  color: #ffffff;
+}
+
+/* Pagination Button Styles */
+.button-container {
+  text-align: center;
+  padding: 15px;
+}
+
+.button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.page-number-container {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.page-number {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 18px;
+  line-height: 40px;
+  text-align: center;
+}
+
+/* Product Table Styles */
+#product_table {
+  background-color: #0056b3;
+  margin: 0 auto;
+  width: 70%;
+  border-collapse: collapse;
+}
+
+#product_table th, #product_table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#product_table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.product-thumbnail {
+  max-width: 130px;
+  height: auto;
+}
+
+#product_table td {
+  background-color: #fff;
+}
+
+/* Chat Styles */
+#chatWindow {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+}
+
+#chatbox {
+  width: calc(100% - 40px);
+  padding: 20px;
+  margin: 20px auto;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#messageLogs {
+  display: grid;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  align-content: space-between;
+  justify-items: center;
+}
+
+#messageLogs p {
+  margin: 5px 0;
+}
+
+.self-message, .other-message {
+  display: grid;
+  width: 50%;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.self-message {
+  background-color: #d3e8fd;
+  text-align-last: end;
+}
+
+.other-message {
+  background-color: #f3f3f3;
+  text-align-last: start;
+}
+
+.self-message strong {
+  color: blue;
+}
+
+.other-message strong {
+  color: green;
+}
+
+/* Query Form Styles */
+#myForm {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#myForm label, #myForm select, #myForm input[type="number"], #myForm input[type="submit"] {
+  margin-right: 1px;
+  width: 5%;
+  text-align: center;
+}
+
+#myForm input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#myForm input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Link and Button Styles */
+a {
+  display: block;
+  margin-top: 10px;
+}
+
+a.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 27px;
+  align-content: space-evenly;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+a.button:hover {
+  background-color: #0056b3;
+}
+
+.submit-button, .register-link, .github-link {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #121213;
+  border-radius: 24px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 10px;
+  margin-top: 14px;
+  width: auto;
+  height: 32px;
+  padding: 8px 12px;
+}
+
+/* Edit and Delete Button Styles */
+.edit-button{
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete-button{
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #d62710;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+.edit-button:hover{
+  background-color: #ee9f0c;
+}
+
+.delete-button:hover {
+  background-color: #b30000;
+}
+
+
+.submit-button:hover {
+  background-color: #009e1d;
+  color: #fff;
+}
+
+.register-link:hover {
+  background-color: #112598;
+  color: #fff;
+}
+
+.github-link:hover {
+  background-color: #0a0519;
+  color: #fff;
+}
+
+/* 404 Error Page Styles */
+.container-err {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background-color: #0b0718;
+}
+
+.error-header {
+  font-family: sans-serif;
+  display: block;
+  font-size: 12em;
+  color: white;
+}
+
+.error-box {
+  margin: 13px;
+  border: solid 6px;
+  border-color: #008a8b;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  display: inline-block;
+}
+
+.keyword, .value {
+  color: orange;
+}
+
+.object {
+  color: red;
+}
+
+.function, .value {
+  color: #00FFFF; /* celeste */
+}
+
+.operator {
+  color: rgb(118, 118, 249);
+}
+
+.string {
+  color: yellow;
+}
+
+/* Welcome Page Styles */
+.welcome-container {
+  max-width: auto;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #260759;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-message1 {
+  text-align: center;
+  font-size: 32px;
+  color: #ffffff;
+}
+
+.welcome-message2 {
+  text-align: center;
+  font-size: 21px;
+  color: #ffffff;
+}
+
+/* Product Added Styles */
+.product-added {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.product-details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.product-details img {
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.product-details div {
+  flex-grow: 1;
+  text-align: left;
+}
+
+/* Ticket Styles */
+.ticket-container {
+  max-width: 800px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Margen automático horizontal */
+}
+
+.ticket {
+  background-color: #fff;
+  width: 500px;
+  border: 2px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.ticket-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.ticket-details {
+  margin-bottom: 20px;
+}
+
+.ticket-products {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ticket-products li {
+  margin-bottom: 5px;
+}
+
+.ticket-total {
+  font-weight: bold;
+}
